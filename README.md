@@ -14,7 +14,7 @@ example configuration:
         postrotate => "[ -e /etc/init.d/puppetmaster-production ] && /etc/init.d/puppetmaster-production condrestart >/dev/null 2>&1 || true",
     }
 
-    logrotate::httpdvhost - for directory specific httpd vhost (where logdir is /var/log/httpd|apache2/$vhost)
+logrotate::httpdvhost - for directory specific httpd vhost (where logdir is /var/log/httpd|apache2/$vhost)
     
     logrotate::httpdvhost { "www.example.com"; }
 
