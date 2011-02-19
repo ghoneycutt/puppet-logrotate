@@ -16,5 +16,5 @@ logrotate::dotd { "puppetmaster-production-masterhttp.log":
 
 logrotate::httpdvhost - for directory specific httpd vhost (where logdir is /var/log/httpd|apache2/$vhost)
 
-logrotate::httpdvhost { "www.example.com"; }
+logrotate::httpdvhost { "www.example.com\"; }
 
