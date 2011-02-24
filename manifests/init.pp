@@ -29,7 +29,7 @@ class logrotate {
     } # file
 } # class logrotate
 
-define logrotate::dotd( $log, $options, $postrotate = "NONE" ) {
+define logrotate::dotd( $log, $options, $postrotate = "NONE", $prerotate = "NONE" ) {
 
     # options should be an array of valid logrotate variables (currently no error checking)
 
@@ -48,6 +48,8 @@ define logrotate::dotd( $log, $options, $postrotate = "NONE" ) {
 define logrotate::httpdvhost() {
 
     include logrotate
+
+    $prerotate = "NONE"
 
     $httpdname = $operatingsystem ? {
         RedHat => "httpd",
