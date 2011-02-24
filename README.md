@@ -12,6 +12,7 @@ example configuration:
         log => "/var/log/puppet.production/masterhttp.log",
         options => [ 'compress', 'weekly', 'rotate 4' ],
         postrotate => "[ -e /etc/init.d/puppetmaster-production ] && /etc/init.d/puppetmaster-production condrestart >/dev/null 2>&1 || true",
+        prerotate => "[ -x /usr/bin/logger ] && /usr/bin/logger -t sampleprerotate this is a sample prerotate script",
     }
 
 logrotate::httpdvhost - for directory specific httpd vhost (where logdir is /var/log/httpd|apache2/$vhost)
