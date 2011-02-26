@@ -52,20 +52,17 @@ define logrotate::httpdvhost() {
     $prerotate = "NONE"
 
     $httpdname = $operatingsystem ? {
-        RedHat => "httpd",
-        CentOS => "httpd",
+        /RedHat|CentOS|Fedora/ => "httpd",
         default => "apache2",
     } # $httpdname
 
     $postrotate = $operatingsystem ? {
-        RedHat => "/sbin/service $httpdname reload > /dev/null 2>/dev/null || true",
-        CentOS => "/sbin/service $httpdname reload > /dev/null 2>/dev/null || true",
+        /RedHat/CentOS/Fedora/ => "/sbin/service $httpdname reload > /dev/null 2>/dev/null || true",
         default => "if [ -f \"`. /etc/$httpdname/envvars ; echo ${APACHE_PID_FILE:-/var/run/$httpdname.pid}`\" ]; then /etc/init.d/$httpdname reload > /dev/null; fi",
     } # $postrotate
 
     $log = $operatingsystem ? {
-        RedHat => "/var/log/httpd/${name}/*log",
-        CentOS => "/var/log/httpd/${name}/*log",
+        /RedHat/CentOS/Fedora/ => "/var/log/httpd/${name}/*log",
         default => "/var/log/apache2/${name}/*log",
     } # $log
 
